@@ -10,7 +10,10 @@
       "defaultValue": "infra-lab"
     },
     "size": {
-      "type": "string" 
+      "type": "string",
+      "allowedValues": [
+        "Standard_D2s_v3"
+    ]
     },
     "userName": {
       "type": "string"
@@ -33,7 +36,6 @@
       "name": "[variables('vmName')]",
       "location": "[resourceGroup().location]",
       "properties": {
-        "licenseType":"Windows_Server",
         "labVirtualNetworkId": "[variables('labVirtualNetworkId')]",
         "notes": "Windows Server 2016 Datacenter",
         "galleryImageReference": {
