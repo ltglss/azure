@@ -1,7 +1,0 @@
-{
-
-"itemDisplayName": "Azure Kubernetes Service - AKS",
-
-"description": "Deploys an AKS cluster with three agent nodes and the Azure Monitor container health solution."
-
-}
