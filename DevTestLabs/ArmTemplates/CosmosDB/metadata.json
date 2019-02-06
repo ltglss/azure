@@ -1,0 +1,7 @@
+{
+
+"itemDisplayName": "Azure Cosmos DB",
+
+"description": "Deploys Azure Cosmos DB Instance in Forem sandbox virtual network"
+
+}
