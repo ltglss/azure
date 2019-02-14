@@ -204,8 +204,7 @@
           "type": "siteextensions",
           "dependsOn": [
             "[concat('Microsoft.Web/Sites/', variables('webSiteName'))]",
-            "[concat('Microsoft.Cache/Redis/', variables('cacheName'))]",
-            "Microsoft.ApplicationInsights.AzureWebSites"
+            "[concat('Microsoft.Cache/Redis/', variables('cacheName'))]"
           ],
           "properties": {
           }
