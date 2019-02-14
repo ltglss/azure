@@ -2,6 +2,12 @@
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "Web App Name": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the Azure Web App"
+      }
+    },
     "skuName": {
       "type": "string",
       "defaultValue": "B1",
@@ -49,9 +55,9 @@
     }
   },
   "variables": {
-    "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
-    "webSiteName": "[concat('webSite', uniqueString(resourceGroup().id))]",
-    "sqlserverName": "[concat('sqlserver', uniqueString(resourceGroup().id))]",
+    "hostingPlanName": "[concat('lfmhosting', parameters('Web App Name'))]",
+    "webSiteName": "[concat('lfmweb', parameters('Web App Name'))]",
+    "sqlserverName": "[concat('lfmsql', parameters('Web App Name'))]",
     "edition": "Basic",
     "maxSizeBytes": "1073741824",
     "requestedServiceObjectiveName" : "Basic",
@@ -59,7 +65,7 @@
     "cacheSKUName" : "Basic",
     "cacheSKUFamily": "C",
     "cacheSKUCapacity": 1,
-    "cacheName": "[concat('cache', uniqueString(resourceGroup().id))]",
+    "cacheName": "[concat('lfmcache', parameters('Web App Name'))]",
     "appInsightsName": "monitoring",
     "serviceBusNamespaceName": "leforemservicebuspoc",
     "serviceBusSku": "Basic",
