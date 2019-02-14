@@ -144,7 +144,8 @@
       "location": "[parameters('location')]",
       "dependsOn": [
         "[concat('Microsoft.Web/serverFarms/', variables('hostingPlanName'))]",
-        "[concat('Microsoft.Cache/Redis/', variables('cacheName'))]"
+        "[concat('Microsoft.Cache/Redis/', variables('cacheName'))]",
+        "[resourceId('microsoft.insights/components/', variables('appInsightsName'))]"
       ],
       "tags": {
         "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', variables('hostingPlanName'))]": "empty",
@@ -180,6 +181,7 @@
             "Microsoft.ApplicationInsights.AzureWebSites"
           ],
           "properties": {
+            "CacheConnection": "[concat(variables('cacheName'),'.redis.cache.windows.net,abortConnect=false,ssl=true,password=', listKeys(resourceId('Microsoft.Cache/Redis', variables('cacheName')), '2015-08-01').primaryKey)]",
             "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(concat('microsoft.insights/components/', variables('appInsightsName'))).InstrumentationKey]"
           }
         },
@@ -202,7 +204,6 @@
             ]
           }
         },
-    
       {
           "apiVersion": "2015-08-01",
           "name": "Microsoft.ApplicationInsights.AzureWebSites",
