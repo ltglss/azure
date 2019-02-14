@@ -174,7 +174,8 @@
             "Microsoft.ApplicationInsights.AzureWebSites"
           ],
           "properties": {
-            "CacheConnection": "[concat(variables('cacheName'),'.redis.cache.windows.net,abortConnect=false,ssl=true,password=', listKeys(resourceId('Microsoft.Cache/Redis', variables('cacheName')), '2015-08-01').primaryKey)]"
+            "CacheConnection": "[concat(variables('cacheName'),'.redis.cache.windows.net,abortConnect=false,ssl=true,password=', listKeys(resourceId('Microsoft.Cache/Redis', variables('cacheName')), '2015-08-01').primaryKey)]",
+            "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(concat('microsoft.insights/components/', variables('appInsightsName'))).InstrumentationKey]"
           }
         },
         {
@@ -196,19 +197,7 @@
             ]
           }
         },
-        {
-          "apiVersion": "2015-08-01",
-          "name": "appsettings",
-          "type": "config",
-          "dependsOn": [
-            "[concat('Microsoft.Web/Sites/', variables('webSiteName'))]",
-            "[concat('Microsoft.Cache/Redis/', variables('cacheName'))]",
-            "Microsoft.ApplicationInsights.AzureWebSites"
-          ],
-          "properties": {
-              "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(concat('microsoft.insights/components/', variables('appInsightsName'))).InstrumentationKey]"
-          }
-      },
+    
       {
           "apiVersion": "2015-08-01",
           "name": "Microsoft.ApplicationInsights.AzureWebSites",
