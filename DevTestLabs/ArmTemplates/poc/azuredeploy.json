@@ -191,8 +191,7 @@
           "name": "web",
           "dependsOn": [
             "[concat('Microsoft.Web/Sites/', variables('webSiteName'))]",
-            "[concat('Microsoft.Cache/Redis/', variables('cacheName'))]",
-            "Microsoft.ApplicationInsights.AzureWebSites"
+            "[concat('Microsoft.Cache/Redis/', variables('cacheName'))]"
           ],
           "properties": {
             "ipSecurityRestrictions": [
@@ -203,19 +202,7 @@
               }
             ]
           }
-        },
-      {
-          "apiVersion": "2015-08-01",
-          "name": "Microsoft.ApplicationInsights.AzureWebSites",
-          "type": "siteextensions",
-          "dependsOn": [
-            "[concat('Microsoft.Web/Sites/', variables('webSiteName'))]",
-            "[concat('Microsoft.Cache/Redis/', variables('cacheName'))]"
-          ],
-          "properties": {
-          }
-      }
-        
+        }
       ]
     },
     {
