@@ -91,7 +91,7 @@
     "serviceBusSku": "Basic",
     "storageAccountName": "[concat('lfmstorage', parameters('Function App Name'))]",
     "storageAccountType": "Standard_LRS",
-    "cosmosDBOfferType": "Basic",
+    "cosmosDBOfferType": "Standard",
     "cosmosDBAccountName": "[concat('lfmcosmos', parameters('Web App Name'))]",
     "eventGridTopicName": "",
     "eventGridSubscriptionName": "",
