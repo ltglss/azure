@@ -314,7 +314,20 @@
     "kind": "Storage",
     "sku": {
       "name": "[variables('storageAccountType')]"
-    }
+    },
+    "properties": {
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "virtualNetworkRules": [],
+          "ipRules": [
+            {
+              "value": "193.58.48.0/20",
+              "action": "Allow"
+            }
+          ],
+          "defaultAction": "Deny"
+        }
+      }
   },
   {
     "apiVersion": "2015-04-08",
@@ -325,6 +338,7 @@
     "properties": {
       "name": "[variables('cosmosDBAccountName')]",
       "databaseAccountOfferType": "[variables('cosmosDBOfferType')]",
+      "ipRangeFilter": "193.58.48.0/20,104.42.195.92,40.76.54.131,52.176.6.30,52.169.50.45,52.187.184.26,0.0.0.0",
       "locations": [
         {
           "locationName": "[parameters('location')]",
@@ -337,8 +351,8 @@
       ],
       "enableMultipleWriteLocations": true,
                 "isVirtualNetworkFilterEnabled": false,
-                "virtualNetworkRules": [],
-                "ipRangeFilter": ""
+                "virtualNetworkRules": []
+                
     },
     "tags": {
       "defaultExperience": "[if(equals(parameters('CosmosDB Api Type'), 'Cassandra'), 'Cassandra', if(equals(parameters('CosmosDB Api Type'), 'Gremlin'), 'Graph', if(equals(parameters('CosmosDB Api Type'), 'MongoDB'), 'MongoDB', if(equals(parameters('CosmosDB Api Type'), 'SQL'), 'DocumentDB', if(equals(parameters('CosmosDB Api Type'), 'Table'), 'Table', '')))))]"
