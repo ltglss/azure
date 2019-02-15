@@ -335,11 +335,10 @@
           "failoverPriority": 1
         }
       ],
-      "capabilities": [
-        {
-          "name": "[if(equals(parameters('CosmosDB Api Type'), 'Cassandra'), 'EnableCassandra', if(equals(parameters('CosmosDB Api Type'), 'Gremlin'), 'EnableGremlin', if(equals(parameters('CosmosDB Api Type'), 'MongoDB'), '', if(equals(parameters('CosmosDB Api Type'), 'SQL'), '', if(equals(parameters('CosmosDB Api Type'), 'Table'), 'EnableTable', '')))))]"
-        }
-      ]
+      "enableMultipleWriteLocations": true,
+                "isVirtualNetworkFilterEnabled": false,
+                "virtualNetworkRules": [],
+                "ipRangeFilter": ""
     },
     "tags": {
       "defaultExperience": "[if(equals(parameters('CosmosDB Api Type'), 'Cassandra'), 'Cassandra', if(equals(parameters('CosmosDB Api Type'), 'Gremlin'), 'Graph', if(equals(parameters('CosmosDB Api Type'), 'MongoDB'), 'MongoDB', if(equals(parameters('CosmosDB Api Type'), 'SQL'), 'DocumentDB', if(equals(parameters('CosmosDB Api Type'), 'Table'), 'Table', '')))))]"
