@@ -46,12 +46,12 @@
     "virtualNetworkResourceGroup":"infra-network-rg",
     "vnetID": "[resourceId(variables('virtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
     "SubnetRef": "[concat(variables('vnetID'), '/subnets/', variables('subnetName'))]",
-    "workspacename": "workshop-analytics",
+    "workspacename": "[concat('monitor-', uniquestring(resourceGroup().id))]",
     "location": "westeurope",
     "sku": "Standalone",
     "storageAccountType": "Standard_LRS",
-    "storageAccountName": "[concat('store', uniquestring(resourceGroup().id))]",
-    "vaultname": "workshop-vault"
+    "storageAccountName": "[concat('storage-', uniquestring(resourceGroup().id))]",
+    "vaultname": "[concat('recoveryvault-', uniquestring(resourceGroup().id))]"
   },
   "resources": [
     {
