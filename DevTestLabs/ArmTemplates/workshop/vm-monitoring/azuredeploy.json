@@ -7,10 +7,8 @@
     }
   },
   "variables": {
-
     "location": "westeurope",
     "sku": "Standalone"
-    
   },
   "resources": [
     {
