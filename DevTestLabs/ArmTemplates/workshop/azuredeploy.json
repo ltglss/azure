@@ -119,9 +119,6 @@
       ],
       "properties": {
         "licenseType": "Windows_Server",
-        "availabilitySet": {
-          "id": "[resourceId('Microsoft.Compute/availabilitySets',concat(parameters('vmName'),'-as'))]"
-        },
         "hardwareProfile": {
           "vmSize": "[parameters('vmSize')]"
         },
