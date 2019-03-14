@@ -93,9 +93,10 @@
     "storageAccountType": "Standard_LRS",
     "cosmosDBOfferType": "Standard",
     "cosmosDBAccountName": "[concat('lfmcosmos', parameters('Web App Name'))]",
-    "eventGridTopicName": "",
-    "eventGridSubscriptionName": "",
-    "eventGridSubscriptionUrl": ""
+    "acrsku": "Basic",
+    "acrName": "[concat('lfmacr', parameters('Web App Name'))]",
+    "acrAdminUserEnabled": "false",
+    
   },
   "resources": [
     {
@@ -229,7 +230,7 @@
         }
       ]
     },
-    {
+  {
       "name": "[variables('cacheName')]",
       "type": "Microsoft.Cache/Redis",
       "location": "[parameters('location')]",
@@ -245,19 +246,24 @@
           "capacity": "[variables('cacheSKUCapacity')]"
         }
       }
+  },
+  {
+    "name": "[variables('acrName')]",
+    "type": "Microsoft.ContainerRegistry/registries",
+    "apiVersion": "2017-10-01",
+    "location": "[parameters('location')]",
+    "comments": "Container registry for storing docker images",
+    "tags": {
+      "displayName": "Container Registry",
+      "container.registry": "[variables('acrName')]"
     },
-    {
-      "apiVersion": "2014-04-01",
-      "name": "[variables('appInsightsName')]",
-      "type": "Microsoft.Insights/components",
-      "location": "[resourceGroup().location]",
-      "tags": {
-          "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('webSiteName'))]": "Resource",
-          "displayName": "AppInsightsComponent"
-      },
-      "properties": {
-          "applicationId": "[variables('appInsightsName')]"
-      }
+    "sku": {
+      "name": "[variables('acrSku')]",
+      "tier": "[variables('acrSku')]"
+    },
+    "properties": {
+      "adminUserEnabled": "[variables('acrAdminUserEnabled')]"
+    }
   },
   {
     "apiVersion": "2017-04-01",
